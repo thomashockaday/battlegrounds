@@ -25,6 +25,7 @@ const ctx = canvas.getContext("2d");
 class Player {
 	radius = 40;
 	bullets = [];
+	angle = Math.PI / 2;
 
 	constructor() {
 		this.x = (canvas.width - this.radius) / 2;
@@ -32,6 +33,12 @@ class Player {
 	}
 
 	draw() {
+		ctx.save();
+
+		ctx.translate(this.x, this.y);
+		ctx.rotate(this.angle);
+		ctx.translate(-this.x, -this.y);
+
 		ctx.fillStyle = "black";
 		ctx.beginPath();
 		ctx.arc(
@@ -42,6 +49,12 @@ class Player {
 			Math.PI * 2
 		);
 		ctx.fill();
+
+		ctx.beginPath();
+  		ctx.rect(this.x + this.radius + 15, this.y - 5, 25, 10);
+  		ctx.fill();
+
+  		ctx.restore();
 
 		for (let i = 0; i < this.bullets.length; i++) {
 			this.bullets[i].draw();
@@ -55,10 +68,12 @@ class Player {
 	}
 
 	shoot(event) {
-		const angle = Math.atan2(event.clientY - canvas.height / 2, event.clientX - canvas.width / 2);
-
-		const bullet = new Bullet(this.x, this.y, { x: Math.cos(angle), y: Math.sin(angle) });
+		const bullet = new Bullet(this.x, this.y, { x: Math.cos(this.angle), y: Math.sin(this.angle) });
 		this.bullets.push(bullet);
+	}
+
+	rotate(event) {
+		this.angle = Math.atan2(event.clientY - canvas.height / 2, event.clientX - canvas.width / 2);
 	}
 };
 
@@ -111,6 +126,7 @@ const draw = () => {
 
 window.onload = game;
 window.onclick = (event) => { player.shoot(event); }
+window.onmousemove = (event) => { player.rotate(event); }
 
 </script>
 </body>
