@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Test</title>
+	<style>
+		html {
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+
+<script>
+
+const canvas = document.createElement("canvas");
+canvas.width = 400;
+canvas.height = 400;
+document.body.appendChild(canvas);
+
+const ctx = canvas.getContext("2d");
+
+class Player {
+	radius = 40;
+	bullets = [];
+
+	constructor() {
+		this.x = (canvas.width - this.radius) / 2;
+		this.y = (canvas.height - this.radius) / 2;
+	}
+
+	draw() {
+		ctx.fillStyle = "black";
+		ctx.beginPath();
+		ctx.arc(
+			this.x,
+			this.y,
+			this.radius,
+			0,
+			Math.PI * 2
+		);
+		ctx.fill();
+
+		for (let i = 0; i < this.bullets.length; i++) {
+			this.bullets[i].draw();
+		}
+	}
+
+	update() {
+		for (let i = 0; i < this.bullets.length; i++) {
+			this.bullets[i].update();
+		}
+	}
+
+	shoot(event) {
+		const angle = Math.atan2(event.clientY - canvas.height / 2, event.clientX - canvas.width / 2);
+
+		const bullet = new Bullet(this.x, this.y, { x: Math.cos(angle), y: Math.sin(angle) });
+		this.bullets.push(bullet);
+	}
+};
+
+class Bullet {
+	radius = 8;
+
+	constructor(x, y, velocity) {
+		this.x = x;
+		this.y = y;
+		this.velocity = velocity;
+	}
+
+	draw() {
+		ctx.fillStyle = "red";
+		ctx.beginPath();
+		ctx.arc(
+			this.x,
+			this.y,
+			this.radius,
+			0,
+			Math.PI * 2
+		);
+		ctx.fill();
+	}
+
+	update() {
+		this.x += this.velocity.x;
+		this.y += this.velocity.y;
+	}
+}
+
+const player = new Player();
+
+const game = () => {
+	update();
+	draw();
+
+	requestAnimationFrame(game);
+};
+
+function update() {
+	player.update();
+}
+
+const draw = () => {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	player.draw();
+}
+
+window.onload = game;
+window.onclick = (event) => { player.shoot(event); }
+
+</script>
+</body>
+</html>
