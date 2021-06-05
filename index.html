@@ -79,6 +79,7 @@ class Player {
 
 class Bullet {
 	radius = 8;
+	speed = 10;
 
 	constructor(x, y, velocity) {
 		this.x = x;
@@ -100,8 +101,8 @@ class Bullet {
 	}
 
 	update() {
-		this.x += this.velocity.x;
-		this.y += this.velocity.y;
+		this.x += this.velocity.x * this.speed;
+		this.y += this.velocity.y * this.speed;
 	}
 }
 
