@@ -144,7 +144,25 @@ function update() {
 const draw = () => {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+	ctx.save();
+	Camera.renderView(player);
+
+	// @todo remove this test object
+	ctx.fillRect(100, 100, 30, 30);
+
 	player.draw();
+	ctx.restore();
+}
+
+class Camera {
+	static padding = 100;
+
+	static renderView(player) {
+		let x = -player.x + player.radius + this.padding;
+		let y = -player.y + player.radius + this.padding;
+
+		ctx.translate(x, y);
+	}
 }
 
 window.onload = game;
