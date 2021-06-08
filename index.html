@@ -128,7 +128,29 @@ class Bullet {
 	}
 }
 
+class Enemy {
+	x = 300;
+	y = 300;
+	radius = 30;
+
+	draw() {
+		ctx.fillStyle = "blue";
+		ctx.beginPath();
+		ctx.arc(
+			this.x,
+			this.y,
+			this.radius,
+			0,
+			Math.PI * 2
+		);
+		ctx.fill();
+	}
+}
+
 const player = new Player();
+const enemy = new Enemy();
+
+const entities = [player, enemy];
 
 const game = () => {
 	update();
@@ -147,10 +169,9 @@ const draw = () => {
 	ctx.save();
 	Camera.renderView(player);
 
-	// @todo remove this test object
-	ctx.fillRect(100, 100, 30, 30);
-
+	enemy.draw();
 	player.draw();
+
 	ctx.restore();
 }
 
