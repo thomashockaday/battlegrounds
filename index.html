@@ -125,6 +125,17 @@ class Bullet {
 	update() {
 		this.x += this.velocity.x * this.speed;
 		this.y += this.velocity.y * this.speed;
+
+		for (let i = 0; i < entities.length; i++) {
+			if (circleCollision(this, entities[i])) {
+				this.remove();
+				entities[i].radius--;
+			}
+		}
+	}
+
+	remove() {
+		player.bullets.splice(player.bullets.indexOf(this), 1);
 	}
 }
 
@@ -134,16 +145,18 @@ class Enemy {
 	radius = 30;
 
 	draw() {
-		ctx.fillStyle = "blue";
-		ctx.beginPath();
-		ctx.arc(
-			this.x,
-			this.y,
-			this.radius,
-			0,
-			Math.PI * 2
-		);
-		ctx.fill();
+		if (this.radius > 0) {
+			ctx.fillStyle = "blue";
+			ctx.beginPath();
+			ctx.arc(
+				this.x,
+				this.y,
+				this.radius,
+				0,
+				Math.PI * 2
+			);
+			ctx.fill();
+		}
 	}
 }
 
@@ -184,6 +197,14 @@ class Camera {
 
 		ctx.translate(x, y);
 	}
+}
+
+const circleCollision = (circleA, circleB) => {
+	const distanceX = circleA.x - circleB.x;
+	const distanceY = circleA.y - circleB.y;
+	const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+	return distance < circleA.radius + circleB.radius;
 }
 
 window.onload = game;
