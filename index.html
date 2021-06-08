@@ -21,11 +21,13 @@ canvas.height = 400;
 document.body.appendChild(canvas);
 
 const ctx = canvas.getContext("2d");
+const keys = [];
 
 class Player {
 	radius = 40;
 	bullets = [];
 	angle = Math.PI / 2;
+	speed = 5;
 
 	constructor() {
 		this.x = (canvas.width - this.radius) / 2;
@@ -62,8 +64,28 @@ class Player {
 	}
 
 	update() {
+		this.move();
+
 		for (let i = 0; i < this.bullets.length; i++) {
 			this.bullets[i].update();
+		}
+	}
+
+	move() {
+		if (keys.includes("w")) {
+			this.y -= this.speed;
+		}
+
+		if (keys.includes("a")) {
+			this.x -= this.speed;
+		}
+
+		if (keys.includes("s")) {
+			this.y += this.speed;
+		}
+
+		if (keys.includes("d")) {
+			this.x += this.speed;
 		}
 	}
 
@@ -128,6 +150,22 @@ const draw = () => {
 window.onload = game;
 window.onclick = (event) => { player.shoot(event); }
 window.onmousemove = (event) => { player.rotate(event); }
+
+window.addEventListener("keydown", e => {
+  	const { key } = e;
+
+  	if (!keys.includes(key)) {
+    	keys.push(key);
+  	}
+})
+
+window.addEventListener("keyup", e => {
+	const { key } = e;
+
+  	if (keys.includes(key)) {
+    	keys.splice(keys.indexOf(key), 1);
+  	}
+})
 
 </script>
 </body>
