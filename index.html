@@ -75,19 +75,19 @@ class Player {
 	}
 
 	move() {
-		if (keys.includes("w")) {
+		if (keys.includes("w") && this.y > 0) {
 			this.y -= this.speed;
 		}
 
-		if (keys.includes("a")) {
+		if (keys.includes("a") && this.x > 0) {
 			this.x -= this.speed;
 		}
 
-		if (keys.includes("s")) {
+		if (keys.includes("s") && this.y + this.radius < canvas.height) {
 			this.y += this.speed;
 		}
 
-		if (keys.includes("d")) {
+		if (keys.includes("d") && this.x + this.radius < canvas.width) {
 			this.x += this.speed;
 		}
 	}
