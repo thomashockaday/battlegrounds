@@ -87,11 +87,11 @@ class Player {
 			this.x -= this.speed;
 		}
 
-		if (keys.includes("s") && this.y + this.radius < canvas.height) {
+		if (keys.includes("s") && this.y + this.radius < Stage.height) {
 			this.y += this.speed;
 		}
 
-		if (keys.includes("d") && this.x + this.radius < canvas.width) {
+		if (keys.includes("d") && this.x + this.radius < Stage.width) {
 			this.x += this.speed;
 		}
 	}
@@ -141,10 +141,10 @@ class Bullet {
 		}
 
 		if (
-			this.x > canvas.width
+			this.x > Stage.width
 			|| this.x + this.radius < 0
 			|| this.y < 0
-			|| this.y + this.radius > canvas.height
+			|| this.y + this.radius > Stage.height
 		) {
 			this.remove();
 		}
@@ -187,12 +187,7 @@ class Enemy {
 }
 
 const player = new Player();
-
 const entities = [player];
-
-for (let i = 0; i < 7; i++) {
-	entities.push(new Enemy(Math.random() * canvas.width, Math.random() * canvas.height));
-}
 
 const game = () => {
 	const now = Date.now();
@@ -220,7 +215,7 @@ const draw = () => {
 	Camera.renderView(player);
 
 	ctx.fillStyle = '#aaaaaa';
-	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	ctx.fillRect(0, 0, Stage.width, Stage.height);
 
 	for (let i = 0; i < entities.length; i++) {
 		entities[i].draw();
@@ -240,12 +235,21 @@ class Camera {
 	}
 }
 
+class Stage {
+	static width = 1000;
+	static height = 800;
+}
+
 const circleCollision = (circleA, circleB) => {
 	const distanceX = circleA.x - circleB.x;
 	const distanceY = circleA.y - circleB.y;
 	const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
 	return distance < circleA.radius + circleB.radius;
+}
+
+for (let i = 0; i < 7; i++) {
+	entities.push(new Enemy(Math.random() * Stage.width, Math.random() * Stage.height));
 }
 
 window.onload = game;
