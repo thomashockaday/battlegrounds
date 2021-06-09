@@ -23,6 +23,9 @@ document.body.appendChild(canvas);
 const ctx = canvas.getContext("2d");
 const keys = [];
 
+const interval = 1000 / 60;
+let then = Date.now();
+
 class Player {
 	radius = 40;
 	bullets = [];
@@ -166,8 +169,14 @@ const enemy = new Enemy();
 const entities = [player, enemy];
 
 const game = () => {
-	update();
-	draw();
+	const now = Date.now();
+  	const elapsed = now - then;
+
+  	if (elapsed > interval) {
+    	then = now - (elapsed % interval)
+		update();
+		draw();
+	}
 
 	requestAnimationFrame(game);
 };
