@@ -5,5 +5,13 @@
   "main": "index.html",
   "repository": "git@github.com:thomashockaday/battlegrounds.git",
   "author": "Thomas Hockaday",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4"
+  },
+  "scripts": {
+    "lint": "eslint"
+  }
 }
