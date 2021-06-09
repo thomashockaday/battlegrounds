@@ -135,6 +135,15 @@ class Bullet {
 				entities[i].radius--;
 			}
 		}
+
+		if (
+			this.x > canvas.width
+			|| this.x + this.radius < 0
+			|| this.y < 0
+			|| this.y + this.radius > canvas.height
+		) {
+			this.remove();
+		}
 	}
 
 	remove() {
