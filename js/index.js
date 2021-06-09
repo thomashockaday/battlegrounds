@@ -80,7 +80,7 @@ class Player {
     }
   }
 
-  shoot(event) {
+  shoot() {
     const bullet = new Bullet(this.x, this.y, {
       x: Math.cos(this.angle),
       y: Math.sin(this.angle)
@@ -91,7 +91,7 @@ class Player {
   rotate(event) {
     this.angle = Math.atan2(event.clientY - canvas.height / 2, event.clientX - canvas.width / 2);
   }
-};
+}
 
 class Bullet {
   radius = 8;
