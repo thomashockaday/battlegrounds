@@ -143,9 +143,12 @@ class Bullet {
 }
 
 class Enemy {
-	x = 300;
-	y = 300;
 	radius = 30;
+
+	constructor(x, y) {
+		this.x = x;
+		this.y = y;
+	}
 
 	draw() {
 		if (this.radius > 0) {
@@ -164,9 +167,12 @@ class Enemy {
 }
 
 const player = new Player();
-const enemy = new Enemy();
 
-const entities = [player, enemy];
+const entities = [player];
+
+for (let i = 0; i < 7; i++) {
+	entities.push(new Enemy(Math.random() * canvas.width, Math.random() * canvas.height));
+}
 
 const game = () => {
 	const now = Date.now();
@@ -191,8 +197,9 @@ const draw = () => {
 	ctx.save();
 	Camera.renderView(player);
 
-	enemy.draw();
-	player.draw();
+	for (let i = 0; i < entities.length; i++) {
+		entities[i].draw();
+	}
 
 	ctx.restore();
 }
