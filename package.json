@@ -1,0 +1,9 @@
+{
+  "name": "battlegrounds",
+  "version": "1.0.0",
+  "description": "TBC",
+  "main": "index.html",
+  "repository": "git@github.com:thomashockaday/battlegrounds.git",
+  "author": "Thomas Hockaday",
+  "license": "MIT"
+}
