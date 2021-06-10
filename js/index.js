@@ -16,8 +16,11 @@ let then = Date.now();
 
 class Player {
   radius = 40;
+
   bullets = [];
+
   angle = Math.PI / 2;
+
   speed = 5;
 
   constructor() {
@@ -95,6 +98,7 @@ class Player {
 
 class Bullet {
   radius = 8;
+
   speed = 10;
 
   constructor(x, y, velocity) {
@@ -223,6 +227,7 @@ class Camera {
 
 class Stage {
   static width = 1000;
+
   static height = 800;
 }
 
