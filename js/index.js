@@ -42,7 +42,7 @@ class Player {
       this.y,
       this.radius,
       0,
-      Math.PI * 2
+      Math.PI * 2,
     );
     ctx.fill();
 
@@ -86,7 +86,7 @@ class Player {
   shoot() {
     const bullet = new Bullet(this.x, this.y, {
       x: Math.cos(this.angle),
-      y: Math.sin(this.angle)
+      y: Math.sin(this.angle),
     });
     this.bullets.push(bullet);
   }
@@ -115,7 +115,7 @@ class Bullet {
       this.y,
       this.radius,
       0,
-      Math.PI * 2
+      Math.PI * 2,
     );
     ctx.fill();
   }
@@ -163,7 +163,7 @@ class Enemy {
         this.y,
         this.radius,
         0,
-        Math.PI * 2
+        Math.PI * 2,
       );
       ctx.fill();
     }
