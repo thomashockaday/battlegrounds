@@ -7,6 +7,7 @@
   "author": "Thomas Hockaday",
   "license": "MIT",
   "devDependencies": {
+    "@babel/eslint-parser": "^7.14.5",
     "eslint": "^7.28.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4"
