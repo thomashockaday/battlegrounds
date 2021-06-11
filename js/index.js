@@ -206,7 +206,7 @@ const draw = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   ctx.save();
-  Camera.renderView(player);
+  Camera.renderView(ctx, player);
 
   ctx.fillStyle = '#aaaaaa';
   ctx.fillRect(0, 0, Stage.width, Stage.height);
@@ -223,7 +223,7 @@ const draw = () => {
 class Camera {
   static padding = 100;
 
-  static renderView(player) {
+  static renderView(ctx, player) {
     let x = -player.x + player.radius + this.padding;
     let y = -player.y + player.radius + this.padding;
 
