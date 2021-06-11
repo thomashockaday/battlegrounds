@@ -130,10 +130,10 @@ class Bullet {
     this.x += this.velocity.x * this.speed;
     this.y += this.velocity.y * this.speed;
 
-    entities.forEach((entity) => {
-      if (circleCollision(this, entity)) {
+    enemies.forEach((enemy) => {
+      if (circleCollision(this, enemy)) {
         this.finished = true;
-        entity.radius -= 1;
+        enemy.radius -= 1;
       }
     });
 
@@ -173,13 +173,13 @@ class Enemy {
 
   update() {
     if (this.radius < 10) {
-      entities.splice(entities.indexOf(this), 1);
+      enemies.splice(enemies.indexOf(this), 1);
     }
   }
 }
 
 const player = new Player();
-const entities = [player];
+const enemies = [];
 
 const game = () => {
   const now = Date.now();
@@ -195,8 +195,10 @@ const game = () => {
 };
 
 function update() {
-  entities.forEach((entity) => {
-    entity.update();
+  player.update();
+
+  enemies.forEach((enemy) => {
+    enemy.update();
   });
 }
 
@@ -209,8 +211,10 @@ const draw = () => {
   ctx.fillStyle = '#aaaaaa';
   ctx.fillRect(0, 0, Stage.width, Stage.height);
 
-  entities.forEach((entity) => {
-    entity.draw();
+  player.draw();
+
+  enemies.forEach((enemy) => {
+    enemy.draw();
   });
 
   ctx.restore();
@@ -242,7 +246,7 @@ const circleCollision = (circleA, circleB) => {
 };
 
 for (let i = 0; i < 7; i += 1) {
-  entities.push(new Enemy(Math.random() * Stage.width, Math.random() * Stage.height));
+  enemies.push(new Enemy(Math.random() * Stage.width, Math.random() * Stage.height));
 }
 
 window.onload = init;
