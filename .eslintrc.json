@@ -12,6 +12,9 @@
         "sourceType": "module",
         "requireConfigFile": false
     },
+    "plugins": [
+        "@babel"
+    ],
     "rules": {
     }
 }
