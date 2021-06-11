@@ -60,8 +60,12 @@ class Player {
   update() {
     this.move();
 
-    this.bullets.forEach((item) => {
-      item.update();
+    this.bullets.forEach((bullet) => {
+      bullet.update();
+
+      if (bullet.finished === true) {
+        this.bullets.splice(this.bullets.indexOf(bullet), 1);
+      }
     });
   }
 
@@ -101,6 +105,8 @@ class Bullet {
 
   speed = 10;
 
+  finished = false;
+
   constructor(x, y, velocity) {
     this.x = x + velocity.x * 60;
     this.y = y + velocity.y * 60;
@@ -126,7 +132,7 @@ class Bullet {
 
     entities.forEach((entity) => {
       if (circleCollision(this, entity)) {
-        this.remove();
+        this.finished = true;
         entity.radius -= 1;
       }
     });
@@ -137,12 +143,8 @@ class Bullet {
       || this.y < 0
       || this.y + this.radius > Stage.height
     ) {
-      this.remove();
+      this.finished = true;
     }
-  }
-
-  remove() {
-    player.bullets.splice(player.bullets.indexOf(this), 1);
   }
 }
 
