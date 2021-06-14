@@ -1,9 +1,8 @@
 import circleCollision from './lib/utils.js';
-import keys from './lib/keys.js';
 
-import Bullet from './classes/Bullet.js';
 import Camera from './classes/Camera.js';
 import Enemy from './classes/Enemy.js';
+import Player from './classes/Player.js';
 import Stage from './classes/Stage.js';
 
 const canvas = document.createElement('canvas');
@@ -20,92 +19,6 @@ const ctx = canvas.getContext('2d');
 
 const interval = 1000 / 60;
 let then = Date.now();
-
-class Player {
-  radius = 40;
-
-  bullets = [];
-
-  angle = Math.PI / 2;
-
-  speed = 5;
-
-  constructor() {
-    this.x = (canvas.width - this.radius) / 2;
-    this.y = (canvas.height - this.radius) / 2;
-  }
-
-  draw(ctx) {
-    ctx.save();
-
-    ctx.translate(this.x, this.y);
-    ctx.rotate(this.angle);
-    ctx.translate(-this.x, -this.y);
-
-    ctx.fillStyle = 'black';
-    ctx.beginPath();
-    ctx.arc(
-      this.x,
-      this.y,
-      this.radius,
-      0,
-      Math.PI * 2,
-    );
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.rect(this.x + this.radius, this.y - 5, 25, 10);
-    ctx.fill();
-
-    ctx.restore();
-
-    this.bullets.forEach((bullet) => {
-      bullet.draw(ctx);
-    });
-  }
-
-  update() {
-    this.move();
-
-    this.bullets.forEach((bullet) => {
-      bullet.update();
-
-      if (bullet.finished === true) {
-        this.bullets.splice(this.bullets.indexOf(bullet), 1);
-      }
-    });
-  }
-
-  move() {
-    if (keys.includes('w') && this.y - this.radius > 0) {
-      this.y -= this.speed;
-    }
-
-    if (keys.includes('a') && this.x - this.radius > 0) {
-      this.x -= this.speed;
-    }
-
-    if (keys.includes('s') && this.y + this.radius < Stage.height) {
-      this.y += this.speed;
-    }
-
-    if (keys.includes('d') && this.x + this.radius < Stage.width) {
-      this.x += this.speed;
-    }
-  }
-
-  shoot() {
-    const bullet = new Bullet(this.x, this.y, {
-      x: Math.cos(this.angle),
-      y: Math.sin(this.angle),
-    });
-    this.bullets.push(bullet);
-  }
-
-  rotate(event) {
-    this.angle = Math.atan2(event.clientY - canvas.height / 2, event.clientX - canvas.width / 2);
-  }
-}
 
 const player = new Player();
 const enemies = [];
@@ -169,5 +82,5 @@ window.onclick = (event) => {
   player.shoot(event);
 };
 window.onmousemove = (event) => {
-  player.rotate(event);
+  player.rotate(event, canvas);
 };
