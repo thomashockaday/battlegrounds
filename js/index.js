@@ -154,6 +154,8 @@ class Bullet {
 class Enemy {
   radius = 30;
 
+  alive = true;
+
   constructor(x, y) {
     this.x = x;
     this.y = y;
@@ -176,7 +178,7 @@ class Enemy {
 
   update() {
     if (this.radius < 10) {
-      enemies.splice(enemies.indexOf(this), 1);
+      this.alive = false;
     }
   }
 }
@@ -202,6 +204,10 @@ function update() {
 
   enemies.forEach((enemy) => {
     enemy.update();
+
+    if (enemy.alive === false) {
+      enemies.splice(enemies.indexOf(enemy), 1);
+    }
   });
 }
 
