@@ -136,13 +136,6 @@ class Bullet {
     this.x += this.velocity.x * this.speed;
     this.y += this.velocity.y * this.speed;
 
-    enemies.forEach((enemy) => {
-      if (circleCollision(this, enemy)) {
-        this.finished = true;
-        enemy.radius -= 1;
-      }
-    });
-
     if (
       this.x > Stage.width
       || this.x + this.radius < 0
@@ -174,6 +167,13 @@ function update() {
   player.update();
 
   enemies.forEach((enemy) => {
+    player.bullets.forEach((bullet) => {
+      if (circleCollision(bullet, enemy)) {
+        bullet.finished = true;
+        enemy.radius -= 1;
+      }
+    });
+
     enemy.update();
 
     if (enemy.alive === false) {
