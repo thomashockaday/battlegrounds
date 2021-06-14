@@ -1,4 +1,5 @@
 import circleCollision from './lib/utils.js';
+import keys from './lib/keys.js';
 
 import Bullet from './classes/Bullet.js';
 import Camera from './classes/Camera.js';
@@ -16,7 +17,6 @@ function init() {
 }
 
 const ctx = canvas.getContext('2d');
-const keys = [];
 
 const interval = 1000 / 60;
 let then = Date.now();
@@ -171,19 +171,3 @@ window.onclick = (event) => {
 window.onmousemove = (event) => {
   player.rotate(event);
 };
-
-window.addEventListener('keydown', (e) => {
-  const { key } = e;
-
-  if (!keys.includes(key)) {
-    keys.push(key);
-  }
-});
-
-window.addEventListener('keyup', (e) => {
-  const { key } = e;
-
-  if (keys.includes(key)) {
-    keys.splice(keys.indexOf(key), 1);
-  }
-});
