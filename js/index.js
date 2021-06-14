@@ -1,4 +1,6 @@
 import circleCollision from './utils.js';
+
+import Camera from './classes/Camera.js';
 import Enemy from './classes/Enemy.js';
 import Stage from './classes/Stage.js';
 
@@ -197,17 +199,6 @@ const draw = () => {
 
   ctx.restore();
 };
-
-class Camera {
-  static padding = 100;
-
-  static renderView(ctx, player) {
-    let x = -player.x + player.radius + this.padding;
-    let y = -player.y + player.radius + this.padding;
-
-    ctx.translate(x, y);
-  }
-}
 
 for (let i = 0; i < 7; i += 1) {
   enemies.push(new Enemy(Math.random() * Stage.width, Math.random() * Stage.height));
