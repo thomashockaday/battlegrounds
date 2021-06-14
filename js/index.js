@@ -1,4 +1,5 @@
 import circleCollision from './utils.js';
+import Stage from './classes/Stage.js';
 
 const canvas = document.createElement('canvas');
 canvas.width = 400;
@@ -232,14 +233,6 @@ class Camera {
     ctx.translate(x, y);
   }
 }
-
-class Stage {
-  static width = 1000;
-
-  static height = 800;
-}
-
-
 
 for (let i = 0; i < 7; i += 1) {
   enemies.push(new Enemy(Math.random() * Stage.width, Math.random() * Stage.height));
