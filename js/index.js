@@ -1,4 +1,4 @@
-import circleCollision from './utils.js';
+import circleCollision from './lib/utils.js';
 
 import Bullet from './classes/Bullet.js';
 import Camera from './classes/Camera.js';
