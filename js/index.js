@@ -1,3 +1,5 @@
+import circleCollision from './utils.js';
+
 const canvas = document.createElement('canvas');
 canvas.width = 400;
 canvas.height = 400;
@@ -237,13 +239,7 @@ class Stage {
   static height = 800;
 }
 
-const circleCollision = (circleA, circleB) => {
-  const distanceX = circleA.x - circleB.x;
-  const distanceY = circleA.y - circleB.y;
-  const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
-  return distance < circleA.radius + circleB.radius;
-};
 
 for (let i = 0; i < 7; i += 1) {
   enemies.push(new Enemy(Math.random() * Stage.width, Math.random() * Stage.height));
