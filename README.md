@@ -2,6 +2,20 @@
 
 TBC
 
+## User guide
+
+### Controls
+
+Use the W, A, S, and D keys to move.
+Use the mouse to rotate the player's turret and aim.
+Click to fire.
+
+### Notes
+
+If using a track/touchpad, it's likely you will be unable to move and rotate at the same time.
+This is an intentional feature in most operating systems.
+You should be able to disable this in your system settings.
+
 ## Development Setup
 
 ### Recommendations:
