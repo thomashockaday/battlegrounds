@@ -1,4 +1,5 @@
 import circleCollision from './utils.js';
+import Enemy from './classes/Enemy.js';
 import Stage from './classes/Stage.js';
 
 const canvas = document.createElement('canvas');
@@ -151,38 +152,6 @@ class Bullet {
   }
 }
 
-class Enemy {
-  radius = 30;
-
-  alive = true;
-
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-
-  draw() {
-    if (this.radius > 0) {
-      ctx.fillStyle = 'blue';
-      ctx.beginPath();
-      ctx.arc(
-        this.x,
-        this.y,
-        this.radius,
-        0,
-        Math.PI * 2,
-      );
-      ctx.fill();
-    }
-  }
-
-  update() {
-    if (this.radius < 10) {
-      this.alive = false;
-    }
-  }
-}
-
 const player = new Player();
 const enemies = [];
 
@@ -223,7 +192,7 @@ const draw = () => {
   player.draw();
 
   enemies.forEach((enemy) => {
-    enemy.draw();
+    enemy.draw(ctx);
   });
 
   ctx.restore();
