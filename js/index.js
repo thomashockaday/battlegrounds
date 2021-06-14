@@ -34,7 +34,7 @@ class Player {
     this.y = (canvas.height - this.radius) / 2;
   }
 
-  draw() {
+  draw(ctx) {
     ctx.save();
 
     ctx.translate(this.x, this.y);
@@ -59,7 +59,7 @@ class Player {
     ctx.restore();
 
     this.bullets.forEach((bullet) => {
-      bullet.draw();
+      bullet.draw(ctx);
     });
   }
 
@@ -119,7 +119,7 @@ class Bullet {
     this.velocity = velocity;
   }
 
-  draw() {
+  draw(ctx) {
     ctx.fillStyle = 'red';
     ctx.beginPath();
     ctx.arc(
@@ -191,7 +191,7 @@ const draw = () => {
   ctx.fillStyle = '#aaaaaa';
   ctx.fillRect(0, 0, Stage.width, Stage.height);
 
-  player.draw();
+  player.draw(ctx);
 
   enemies.forEach((enemy) => {
     enemy.draw(ctx);
