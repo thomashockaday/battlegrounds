@@ -33,10 +33,13 @@ class Player {
 
     ctx.restore();
 
-    ctx.font = "16px Arial";
+    ctx.font = "18px Arial";
     ctx.textAlign = "center";
-    ctx.textBaseline = "bottom";
-    ctx.fillText(this.name, this.x, this.y - this.radius);
+    ctx.textBaseline = "middle";
+    ctx.lineWidth = 3;
+    ctx.strokeText(this.name, this.x, this.y);
+    ctx.fillStyle = "white";
+    ctx.fillText(this.name, this.x, this.y);
 
     this.bullets.forEach((bullet) => {
       bullet.draw(ctx);
