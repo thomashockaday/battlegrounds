@@ -13,7 +13,7 @@ const ctx = canvas.getContext("2d");
 const interval = 1000 / 60;
 let then = Date.now();
 
-const player = new Player();
+const player = new Player("Test");
 const enemies = [];
 
 for (let i = 0; i < 7; i += 1) {

@@ -29,5 +29,5 @@ You should be able to disable this in your system settings.
 2.  `$ cd battlegrounds`
 3.  `$ npm install`
 4.  `$ http-server`
-5.  `$ jest`
+5.  `$ npm test`
 6.  Visit http://localhost:8080/ in the browser to play

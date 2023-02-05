@@ -8,9 +8,11 @@ class Player {
   angle = Math.PI / 2;
   speed = 5;
 
-  constructor() {
+  constructor(name) {
     this.x = 200;
     this.y = 200;
+
+    this.name = name;
   }
 
   draw(ctx) {
@@ -30,6 +32,12 @@ class Player {
     ctx.fill();
 
     ctx.restore();
+
+    ctx.fillStyle = "red";
+    ctx.font = "16px Arial";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "bottom";
+    ctx.fillText(this.name, this.x, this.y - this.radius);
 
     this.bullets.forEach((bullet) => {
       bullet.draw(ctx);

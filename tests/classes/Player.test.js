@@ -13,8 +13,11 @@ describe("Player", () => {
   });
 
   test("player can be instantiated", () => {
-    const player = new Player();
+    const name = "Test";
 
+    const player = new Player(name);
+
+    expect(player.name).toBe(name);
     expect(player.x).toBe(200);
     expect(player.y).toBe(200);
     expect(player.radius).toBe(40);
@@ -24,7 +27,7 @@ describe("Player", () => {
   });
 
   test("shoot adds a bullet to the bullets array", () => {
-    const player = new Player();
+    const player = new Player("Test");
 
     expect(player.bullets).toStrictEqual([]);
 
@@ -39,7 +42,7 @@ describe("Player", () => {
   });
 
   test("update removes a bullet from the bullets array if it is finished", () => {
-    const player = new Player();
+    const player = new Player("Test");
 
     player.shoot();
 
