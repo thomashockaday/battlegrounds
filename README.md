@@ -21,7 +21,6 @@ You should be able to disable this in your system settings.
 ### Recommended Installations:
 
 - http-server (https://www.npmjs.com/package/http-server)
-- jest-cli (https://www.npmjs.com/package/jest-cli)
 
 ### Instructions:
 
