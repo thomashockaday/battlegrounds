@@ -16,13 +16,13 @@ class Player {
   }
 
   draw(ctx) {
+    ctx.fillStyle = "black";
     ctx.save();
 
     ctx.translate(this.x, this.y);
     ctx.rotate(this.angle);
     ctx.translate(-this.x, -this.y);
 
-    ctx.fillStyle = "black";
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.fill();
@@ -33,7 +33,6 @@ class Player {
 
     ctx.restore();
 
-    ctx.fillStyle = "red";
     ctx.font = "16px Arial";
     ctx.textAlign = "center";
     ctx.textBaseline = "bottom";
