@@ -1,7 +1,7 @@
-import Player from '../../js/classes/Player';
-import Bullet from '../../js/classes/Bullet';
+import Bullet from "../../js/classes/Bullet";
+import Player from "../../js/classes/Player";
 
-describe('Player', () => {
+describe("Player", () => {
   let events = {};
 
   beforeEach(() => {
@@ -12,7 +12,7 @@ describe('Player', () => {
     });
   });
 
-  test('player can be instantiated', () => {
+  test("player can be instantiated", () => {
     const player = new Player();
 
     expect(player.x).toBe(200);
@@ -23,7 +23,7 @@ describe('Player', () => {
     expect(player.speed).toBe(5);
   });
 
-  test('shoot adds a bullet to the bullets array', () => {
+  test("shoot adds a bullet to the bullets array", () => {
     const player = new Player();
 
     expect(player.bullets).toStrictEqual([]);
@@ -38,7 +38,7 @@ describe('Player', () => {
     expect(player.bullets).toStrictEqual([bullet]);
   });
 
-  test('update removes a bullet from the bullets array if it is finished', () => {
+  test("update removes a bullet from the bullets array if it is finished", () => {
     const player = new Player();
 
     player.shoot();

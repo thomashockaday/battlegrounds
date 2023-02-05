@@ -1,6 +1,6 @@
-import Enemy from '../../js/classes/Enemy';
+import Enemy from "../../js/classes/Enemy";
 
-test('enemy can be instantiated', () => {
+test("enemy can be instantiated", () => {
   const enemy = new Enemy(0, 0);
 
   expect(enemy.x).toBe(0);
@@ -9,7 +9,7 @@ test('enemy can be instantiated', () => {
   expect(enemy.alive).toBe(true);
 });
 
-test('update marks alive as false if the radius value is less than 10', () => {
+test("update marks alive as false if the radius value is less than 10", () => {
   const enemy = new Enemy(0, 0);
 
   expect(enemy.alive).toBe(true);

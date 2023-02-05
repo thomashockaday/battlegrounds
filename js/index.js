@@ -1,15 +1,14 @@
-import circleCollision from './lib/utils.js';
+import circleCollision from "./lib/utils.js";
+import Camera from "./classes/Camera.js";
+import Enemy from "./classes/Enemy.js";
+import Player from "./classes/Player.js";
+import Stage from "./classes/Stage.js";
 
-import Camera from './classes/Camera.js';
-import Enemy from './classes/Enemy.js';
-import Player from './classes/Player.js';
-import Stage from './classes/Stage.js';
-
-const canvas = document.createElement('canvas');
+const canvas = document.createElement("canvas");
 canvas.width = 400;
 canvas.height = 400;
 
-const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext("2d");
 
 const interval = 1000 / 60;
 let then = Date.now();
@@ -18,7 +17,9 @@ const player = new Player();
 const enemies = [];
 
 for (let i = 0; i < 7; i += 1) {
-  enemies.push(new Enemy(Math.random() * Stage.width, Math.random() * Stage.height));
+  enemies.push(
+    new Enemy(Math.random() * Stage.width, Math.random() * Stage.height)
+  );
 }
 
 const update = () => {
@@ -46,7 +47,7 @@ const draw = () => {
   ctx.save();
   Camera.renderView(ctx, player);
 
-  ctx.fillStyle = '#aaaaaa';
+  ctx.fillStyle = "#aaaaaa";
   ctx.fillRect(0, 0, Stage.width, Stage.height);
 
   player.draw(ctx);

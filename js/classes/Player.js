@@ -1,14 +1,11 @@
-import keys from '../lib/keys.js';
-import Stage from './Stage.js';
-import Bullet from './Bullet.js';
+import keys from "../lib/keys.js";
+import Bullet from "./Bullet.js";
+import Stage from "./Stage.js";
 
 class Player {
   radius = 40;
-
   bullets = [];
-
   angle = Math.PI / 2;
-
   speed = 5;
 
   constructor() {
@@ -23,15 +20,9 @@ class Player {
     ctx.rotate(this.angle);
     ctx.translate(-this.x, -this.y);
 
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = "black";
     ctx.beginPath();
-    ctx.arc(
-      this.x,
-      this.y,
-      this.radius,
-      0,
-      Math.PI * 2,
-    );
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.beginPath();
@@ -58,19 +49,19 @@ class Player {
   }
 
   move() {
-    if (keys.includes('w') && this.y - this.radius > 0) {
+    if (keys.includes("w") && this.y - this.radius > 0) {
       this.y -= this.speed;
     }
 
-    if (keys.includes('a') && this.x - this.radius > 0) {
+    if (keys.includes("a") && this.x - this.radius > 0) {
       this.x -= this.speed;
     }
 
-    if (keys.includes('s') && this.y + this.radius < Stage.height) {
+    if (keys.includes("s") && this.y + this.radius < Stage.height) {
       this.y += this.speed;
     }
 
-    if (keys.includes('d') && this.x + this.radius < Stage.width) {
+    if (keys.includes("d") && this.x + this.radius < Stage.width) {
       this.x += this.speed;
     }
   }

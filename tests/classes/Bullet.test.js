@@ -1,10 +1,10 @@
-import Bullet from '../../js/classes/Bullet';
+import Bullet from "../../js/classes/Bullet";
 
-describe('Bullet', () => {
-  test('bullet can be instantiated', () => {
+describe("Bullet", () => {
+  test("bullet can be instantiated", () => {
     const bullet = new Bullet(0, 0, {
       x: 0,
-      y: 0
+      y: 0,
     });
 
     expect(bullet.x).toBe(0);
@@ -15,10 +15,10 @@ describe('Bullet', () => {
     expect(bullet.finished).toBe(false);
   });
 
-  test('update increases the x and y values by the velocity and the speed', () => {
+  test("update increases the x and y values by the velocity and the speed", () => {
     const bullet = new Bullet(0, 0, {
       x: 10,
-      y: 10
+      y: 10,
     });
 
     expect(bullet.x).toBe(600);
@@ -30,10 +30,10 @@ describe('Bullet', () => {
     expect(bullet.y).toBe(700);
   });
 
-  test('update marks finished as true if the x value is less than 0', () => {
+  test("update marks finished as true if the x value is less than 0", () => {
     const bullet = new Bullet(0, 0, {
       x: -10,
-      y: 0
+      y: 0,
     });
 
     expect(bullet.finished).toBe(false);
@@ -43,10 +43,10 @@ describe('Bullet', () => {
     expect(bullet.finished).toBe(true);
   });
 
-  test('update marks finished as true if the x value is greater than the stage width', () => {
+  test("update marks finished as true if the x value is greater than the stage width", () => {
     const bullet = new Bullet(0, 0, {
       x: 400,
-      y: 0
+      y: 0,
     });
 
     expect(bullet.finished).toBe(false);
@@ -56,7 +56,7 @@ describe('Bullet', () => {
     expect(bullet.finished).toBe(true);
   });
 
-  test('update marks finished as true if the y value is less than 0', () => {
+  test("update marks finished as true if the y value is less than 0", () => {
     const bullet = new Bullet(0, 0, { x: 0, y: -10 });
 
     expect(bullet.finished).toBe(false);
@@ -66,7 +66,7 @@ describe('Bullet', () => {
     expect(bullet.finished).toBe(true);
   });
 
-  test('update marks finished as true if the y value is greater than the stage height', () => {
+  test("update marks finished as true if the y value is greater than the stage height", () => {
     const bullet = new Bullet(0, 0, { x: 0, y: 800 });
 
     expect(bullet.finished).toBe(false);

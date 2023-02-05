@@ -1,6 +1,6 @@
 const keys = [];
 
-window.addEventListener('keydown', (e) => {
+window.addEventListener("keydown", (e) => {
   const { key } = e;
 
   if (!keys.includes(key)) {
@@ -8,7 +8,7 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-window.addEventListener('keyup', (e) => {
+window.addEventListener("keyup", (e) => {
   const { key } = e;
 
   if (keys.includes(key)) {
